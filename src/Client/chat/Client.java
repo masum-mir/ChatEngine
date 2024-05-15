@@ -5,21 +5,28 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Client {
 
+    static final String ipAddress = "localhost";
+    static final int port = 8080;
     private Socket socket;
     private BufferedReader input;
     private PrintWriter out;
     private BufferedReader in;
+    
+    Map<String, User> users = new HashMap<>();
 
     public static void main(String[] args) {
-        Client client = new Client("localhost", 8080);
+
+        Client client = new Client(ipAddress, port); 
     }
 
     public Client(String address, int port) {
         try {
-            // Connect to the chat server
+           
             socket = new Socket(address, port);
             System.out.println("Connected to the chat server");
 
@@ -41,6 +48,7 @@ public class Client {
             String userInput;
             while (true) {
                 userInput = input.readLine();
+
                 out.println(userInput);
             }
 
