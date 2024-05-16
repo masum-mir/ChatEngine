@@ -63,7 +63,7 @@ class ClientHandler implements Runnable {
             while ((inputLine = in.readLine()) != null) {
                 for (ClientHandler client : clients) {
                     if (client != this) {
-                        client.out.println(users.get(userName) + ": " + inputLine);
+                        client.out.println(userName + ": " + inputLine);
                     }
                 }
             }
@@ -98,7 +98,7 @@ class ClientHandler implements Runnable {
         } else {
             User user = new User(System.currentTimeMillis(), username, email, phoneNumber, password, true);
             users.put(username, user);
-            System.out.println("Registration successful.");
+            out.println("Registration successful.");
         }
 
     }
